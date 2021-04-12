@@ -414,6 +414,8 @@ public class FlowableRetryTest extends RxJavaTest {
                         }
                         return;
                     }
+                    //TODO:Boolean expression complexity is 4, reduce it
+                    //FIXME:Divide the if conditions in 2 parts
                     if (n > 0 && req.getAndAdd(n) == 0 && (path.get() == 2 || path.compareAndSet(0, 2)) && !done) {
                         int i = count.getAndIncrement();
                         if (i < numFailures) {
