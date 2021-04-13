@@ -22,7 +22,8 @@ import io.reactivex.rxjava3.core.Flowable;
 
 @Test
 public class AmbTckTest extends BaseTck<Long> {
-
+    //TODO:Class is designed for extention, but not explained how to do safely
+    //FIXME:make the method as static/final/abstract
     @Override
     public Publisher<Long> createPublisher(long elements) {
         return
