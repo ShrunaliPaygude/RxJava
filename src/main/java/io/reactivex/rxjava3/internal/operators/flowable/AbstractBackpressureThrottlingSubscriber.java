@@ -45,9 +45,11 @@ abstract class AbstractBackpressureThrottlingSubscriber<T, R> extends AtomicInte
     Throwable error;
 
     volatile boolean cancelled;
-    //TODO:'requested' must be private and have accessor methods
-    //FIXME:Put accessor methods and change to private
-    final AtomicLong requested = new AtomicLong();
+    private AtomicLong requested = new AtomicLong();
+    
+    public AtomicLong getRequested(){
+    return requested;
+    }
     
     final AtomicReference<R> current = new AtomicReference<>();
 
