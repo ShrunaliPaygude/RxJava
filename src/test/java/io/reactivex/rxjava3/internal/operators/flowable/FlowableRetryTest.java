@@ -414,10 +414,31 @@ public class FlowableRetryTest extends RxJavaTest {
                         }
                         return;
                     }
-                    //TODO:Boolean expression complexity is 4, reduce it
-                    //FIXME:Divide the if conditions in 2 parts
-                    if (n > 0 && req.getAndAdd(n) == 0 && (path.get() == 2 || path.compareAndSet(0, 2)) && !done) {
+                    
+                    if (n > 0 && req.getAndAdd(n) == 0 && (path.get() == 2) {
                         int i = count.getAndIncrement();
+                        if (i < numFailures) {
+                            subscriber.onNext("beginningEveryTime");
+                            subscriber.onError(new RuntimeException("forced failure: " + (i + 1)));
+                            done = true;
+                        } else {
+                            do {
+                                if (i == numFailures) {
+                                    subscriber.onNext("beginningEveryTime");
+                                } else
+                                if (i > numFailures) {
+                                    subscriber.onNext("onSuccessOnly");
+                                    subscriber.onComplete();
+                                    done = true;
+                                    break;
+                                }
+                                i = count.getAndIncrement();
+                            } while (req.decrementAndGet() > 0);
+                        }
+                    }
+                }
+                if( path.compareAndSet(0, 2)) && !done){
+                int i = count.getAndIncrement();
                         if (i < numFailures) {
                             subscriber.onNext("beginningEveryTime");
                             subscriber.onError(new RuntimeException("forced failure: " + (i + 1)));
@@ -448,6 +469,7 @@ public class FlowableRetryTest extends RxJavaTest {
         }
     }
 
+    
     @Test
     public void unsubscribeFromRetry() {
         PublishProcessor<Integer> processor = PublishProcessor.create();
