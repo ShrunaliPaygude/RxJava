@@ -35,7 +35,8 @@ abstract class AbstractBackpressureThrottlingSubscriber<T, R> extends AtomicInte
     private static final long serialVersionUID = -5050301752721603566L;
 
     final Subscriber<? super R> downstream;
-
+    //TODO: 'downstream' must be private and have accessor methods
+    //FIXME:Put accessor methods
     Subscription upstream;
 
     volatile boolean done;
