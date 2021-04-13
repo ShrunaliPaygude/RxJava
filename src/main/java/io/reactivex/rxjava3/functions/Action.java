@@ -22,7 +22,6 @@ public interface Action {
      * Runs the action and optionally throws a checked exception.
      * @throws Throwable if the implementation wishes to throw any type of exception
      */
-    //TODO:Throwing throwable is not allowed
-    //FIXME: Throw some other error
-    void run() throws Throwable;
+   
+    void run() throws IOException;
 }
