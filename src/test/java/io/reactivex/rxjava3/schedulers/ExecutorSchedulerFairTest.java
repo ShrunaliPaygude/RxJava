@@ -34,7 +34,8 @@ import io.reactivex.rxjava3.subscribers.TestSubscriber;
 import io.reactivex.rxjava3.testsupport.TestHelper;
 
 public class ExecutorSchedulerFairTest extends AbstractSchedulerConcurrencyTests {
-
+    //TODO: Constant name is not in proper format
+    //FIXME: The name should match the pattern ^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$
     static final Executor executor = Executors.newFixedThreadPool(2, new RxThreadFactory("TestCustomPool"));
 
     @Override
