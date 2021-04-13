@@ -239,6 +239,8 @@ public class BlockingFlowableNextTest extends RxJavaTest {
                 final CountDownLatch timeHasPassed = new CountDownLatch(COUNT);
                 final AtomicBoolean running = new AtomicBoolean(true);
                 final AtomicInteger count = new AtomicInteger(0);
+                //TODO:Anonymous inner class length exceeds the max length
+                //FIXME:Reduce the number of lines
                 final Flowable<Integer> obs = Flowable.unsafeCreate(new Publisher<Integer>() {
 
                     @Override
