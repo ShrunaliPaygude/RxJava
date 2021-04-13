@@ -130,7 +130,8 @@ public abstract class AbstractSchedulerTests extends RxJavaTest {
         });
 
         List<String> strings = m.toList().blockingGet();
-
+        //TODO:Magic number problem
+        //FIXME:Replace with symbolic constant
         assertEquals(4, strings.size());
         // because flatMap does a merge there is no guarantee of order
         assertTrue(strings.contains("names=>a-1"));
