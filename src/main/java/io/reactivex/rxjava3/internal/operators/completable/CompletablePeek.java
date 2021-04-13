@@ -89,6 +89,8 @@ public final class CompletablePeek extends Completable {
                 onTerminate.run();
             } catch (Throwable ex) {
                 Exceptions.throwIfFatal(ex);
+                //TODO: Assignment of parameter is not allowed
+                //FIXME: Change the name of the assignment character
                 e = new CompositeException(e, ex);
             }
 
