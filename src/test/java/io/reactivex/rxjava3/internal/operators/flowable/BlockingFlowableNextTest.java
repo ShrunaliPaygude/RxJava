@@ -258,11 +258,10 @@ public class BlockingFlowableNextTest extends RxJavaTest {
                                     subscriber.onComplete();
                                 } catch (Throwable e) {
                                     subscriber.onError(e);
-                                } finally {
-                                    finished.countDown();
-                                }
+                                } 
                             }
-                        }));
+                        }
+                       finished.countDown();));
                     }
 
                 });
